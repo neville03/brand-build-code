@@ -72,7 +72,7 @@
   --brand-pale: oklch(0.9 0.045 190);
   --brand-bright: oklch(0.78 0.14 174);
   --on-image: oklch(1 0 0);
-  --image-shade: oklch(0.12 0.02 178 / 0.72);
+  --image-shade: oklch(0.12 0.02 178 / 0.82);
 }
 
 @layer base {
