@@ -10,6 +10,7 @@ import merchandiseAsset from "@/assets/work-merchandise.jpg.asset.json";
 import umbrellasAsset from "@/assets/work-umbrellas.jpg.asset.json";
 import uniformsAsset from "@/assets/work-uniforms.jpg.asset.json";
 import heroImage from "@/assets/hero-studio.jpg";
+import aboutImage from "@/assets/about-studio.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -97,11 +98,11 @@ function Hero() {
       <div className="absolute inset-0 bg-image-shade" />
       <div className="relative mx-auto flex min-h-[calc(100svh-5rem)] max-w-6xl flex-col justify-end px-5 pb-14 pt-24 sm:px-8 sm:pb-20">
         <p className="animate-fade mb-5 font-mono text-xs uppercase tracking-[0.2em] text-brand-pale sm:text-sm">Kampala · Uganda</p>
-        <h1 className="animate-rise max-w-[15ch] font-display text-5xl leading-[0.94] text-on-image sm:text-7xl lg:text-[6.5rem]">
-          Branding, design &amp; software built around your ambition.
+        <h1 className="animate-rise max-w-[20ch] text-balance font-display text-4xl leading-[1.05] text-on-image sm:text-5xl">
+          Digital products built around your ambition.
         </h1>
-        <p className="animate-rise mt-6 max-w-xl text-base leading-relaxed text-on-image/80 [animation-delay:140ms] sm:text-lg">
-          We shape distinct business identities and engineer bespoke digital products that help them grow.
+        <p className="animate-rise mt-6 max-w-xl text-base leading-relaxed text-on-image/85 [animation-delay:140ms] sm:text-lg">
+          Distinct branding, design, and software engineering for growing businesses.
         </p>
         <Button asChild className="animate-rise mt-8 w-fit [animation-delay:260ms]">
           <a href="#contact">Start a project <ArrowRight className="size-4" aria-hidden="true" /></a>
@@ -150,11 +151,16 @@ function WorkCarousel() {
 
 function About() {
   return (
-    <section id="about" className="mx-auto grid max-w-6xl gap-8 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[0.7fr_1.3fr]">
-      <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">About us</p>
-      <div>
-        <h2 className="max-w-[17ch] font-display text-4xl leading-tight sm:text-5xl">We bring strategy, creativity and technology together.</h2>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">Continuum Consults helps businesses move from an idea to a clear identity, then into the digital tools and experiences needed to serve customers and scale.</p>
+    <section id="about" className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">About us</p>
+          <h2 className="mt-4 max-w-[17ch] font-display text-4xl leading-tight sm:text-5xl">We bring strategy, creativity and technology together.</h2>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">Continuum Consults helps businesses move from an idea to a clear identity, then into the digital tools and experiences needed to serve customers and scale.</p>
+        </div>
+        <div className="overflow-hidden rounded-lg">
+          <img src={aboutImage} alt="The Continuum Consults team reviewing brand work together in the studio" className="aspect-[4/3] w-full object-cover sm:aspect-[4/3] lg:aspect-[4/5]" width={1200} height={1504} loading="lazy" />
+        </div>
       </div>
     </section>
   );
