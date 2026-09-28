@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import useEmblaCarousel from "embla-carousel-react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, BarChart3, Code2, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useCallback, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import catalogueAsset from "@/assets/continuum-catalogue.pdf.asset.json";
-import logoAsset from "@/assets/continuum-mark.png.asset.json";
-import apparelAsset from "@/assets/work-apparel.jpg.asset.json";
-import merchandiseAsset from "@/assets/work-merchandise.jpg.asset.json";
-import umbrellasAsset from "@/assets/work-umbrellas.jpg.asset.json";
-import uniformsAsset from "@/assets/work-uniforms.jpg.asset.json";
-import heroImage from "@/assets/hero-studio.jpg";
+import { Hero } from "@/components/Hero";
+import logoDark from "@/assets/continuum-mark.png";
+import logoLight from "@/assets/continuum-mark-light.png";
+import apparelImage from "@/assets/work-apparel.jpg";
+import merchandiseImage from "@/assets/work-merchandise.jpg";
+import umbrellasImage from "@/assets/work-umbrellas.jpg";
+import uniformsImage from "@/assets/work-uniforms.jpg";
 import aboutImage from "@/assets/about-studio.jpg";
 
 export const Route = createFileRoute("/")({
@@ -37,16 +37,17 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const CATALOGUE_URL = "/catalogue/continuum-catalogue.pdf";
 const BUSINESS_EMAIL = "continuumconsults@gmail.com";
 const PHONE_PRIMARY = "+256 775 690 138";
 const PHONE_SECONDARY = "+256 701 026 078";
 const SERVICES = ["Brand Identity & Design", "Bespoke Software Solutions", "Both / not sure yet"];
 
 const WORK = [
-  { image: apparelAsset.url, label: "Branded apparel", number: "01" },
-  { image: uniformsAsset.url, label: "Corporate uniforms", number: "02" },
-  { image: merchandiseAsset.url, label: "Promotional merchandise", number: "03" },
-  { image: umbrellasAsset.url, label: "Outdoor branding", number: "04" },
+  { image: apparelImage, label: "Branded apparel", number: "01" },
+  { image: uniformsImage, label: "Corporate uniforms", number: "02" },
+  { image: merchandiseImage, label: "Promotional merchandise", number: "03" },
+  { image: umbrellasImage, label: "Outdoor branding", number: "04" },
 ];
 
 function Index() {
@@ -64,13 +65,13 @@ function Index() {
   );
 }
 
-function Brand({ compact = false }: { compact?: boolean }) {
+function Brand({ compact = false, light = false }: { compact?: boolean; light?: boolean }) {
   return (
     <a href="#top" className="flex items-center gap-3" aria-label="Continuum Consults home">
-      <img src={logoAsset.url} alt="" className={compact ? "size-9 object-contain" : "size-11 object-contain"} />
+      <img src={light ? logoLight : logoDark} alt="" className={compact ? "size-9 object-contain" : "size-11 object-contain"} />
       <span className="leading-none">
         <strong className="block font-display text-lg font-normal uppercase">Continuum</strong>
-        <span className="mt-1 block font-body text-[0.55rem] uppercase tracking-[0.24em] text-muted">Consults</span>
+        <span className={`mt-1 block font-body text-[0.55rem] uppercase tracking-[0.24em] ${light ? "text-primary-foreground/70" : "text-muted"}`}>Consults</span>
       </span>
     </a>
   );
@@ -88,39 +89,6 @@ function Header() {
         </nav>
       </div>
     </header>
-  );
-}
-
-const HERO_FEATURES = [
-  { icon: Zap, label: "Branding & Design" },
-  { icon: Code2, label: "Software Engineering" },
-  { icon: BarChart3, label: "Product Strategy" },
-];
-
-function Hero() {
-  return (
-    <section id="top" className="relative min-h-[calc(100svh-5rem)] overflow-hidden">
-      <img src={heroImage} alt="A designer developing a visual identity in the studio" className="absolute inset-0 size-full object-cover" width={1920} height={1280} />
-      <div className="relative mx-auto flex min-h-[calc(100svh-5rem)] max-w-6xl flex-col justify-end px-5 pb-10 pt-24 sm:px-8 sm:pb-12">
-        <h1 className="animate-rise max-w-[16ch] text-balance font-display text-4xl leading-[1.05] text-on-image drop-shadow-md sm:text-5xl">
-          Digital products built around <span className="text-brand-bright">your ambition.</span>
-        </h1>
-        <p className="animate-rise mt-6 max-w-md text-base leading-relaxed text-on-image/90 [animation-delay:140ms] sm:text-lg">
-          Distinct branding, design, and software engineering for growing businesses.
-        </p>
-        <Button asChild className="animate-rise mt-8 w-fit [animation-delay:260ms]">
-          <a href="#contact">Start a project <ArrowRight className="size-4" aria-hidden="true" /></a>
-        </Button>
-        <div className="animate-fade mt-12 grid grid-cols-1 gap-5 border-t border-on-image/30 pt-6 [animation-delay:400ms] sm:grid-cols-3 sm:gap-8">
-          {HERO_FEATURES.map((feature) => (
-            <div key={feature.label} className="flex items-center gap-3">
-              <feature.icon className="size-5 shrink-0 text-brand-bright" aria-hidden="true" />
-              <span className="text-sm font-medium text-on-image">{feature.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -156,6 +124,9 @@ function WorkCarousel() {
             ))}
           </div>
         </div>
+        <Button asChild variant="outline" className="mt-10">
+          <a href={CATALOGUE_URL} target="_blank" rel="noopener noreferrer">Download full catalogue (PDF) <ArrowUpRight className="size-4" /></a>
+        </Button>
       </div>
     </section>
   );
@@ -208,7 +179,7 @@ function Services() {
                 <p className="leading-relaxed text-muted">{service.body}</p>
                 {service.number === "01" && (
                   <Button asChild variant="outline" className="mt-6 text-primary">
-                    <a href={catalogueAsset.url} target="_blank" rel="noopener noreferrer">View catalogue <ArrowUpRight className="size-4" /></a>
+                    <a href={CATALOGUE_URL} target="_blank" rel="noopener noreferrer">View catalogue <ArrowUpRight className="size-4" /></a>
                   </Button>
                 )}
               </div>
@@ -305,7 +276,7 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-10 sm:flex-row sm:items-center sm:px-8">
-        <Brand />
+        <Brand light />
         <p className="font-mono text-xs uppercase tracking-[0.12em]">Kampala · Uganda</p>
         <p className="text-xs">© {new Date().getFullYear()} Continuum Consults</p>
       </div>
