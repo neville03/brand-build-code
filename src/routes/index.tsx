@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import useEmblaCarousel from "embla-carousel-react";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, BarChart3, Code2, Zap } from "lucide-react";
 import { useCallback, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import catalogueAsset from "@/assets/continuum-catalogue.pdf.asset.json";
