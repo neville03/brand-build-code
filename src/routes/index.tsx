@@ -91,22 +91,34 @@ function Header() {
   );
 }
 
+const HERO_FEATURES = [
+  { icon: Zap, label: "Branding & Design" },
+  { icon: Code2, label: "Software Engineering" },
+  { icon: BarChart3, label: "Product Strategy" },
+];
+
 function Hero() {
   return (
     <section id="top" className="relative min-h-[calc(100svh-5rem)] overflow-hidden">
-      <img src={heroImage} alt="A designer developing a visual identity in the studio" className="absolute inset-0 size-full object-cover" width={1920} height={1080} />
-      <div className="absolute inset-0 bg-image-shade" />
-      <div className="relative mx-auto flex min-h-[calc(100svh-5rem)] max-w-6xl flex-col justify-end px-5 pb-14 pt-24 sm:px-8 sm:pb-20">
-        <p className="animate-fade mb-5 font-mono text-xs uppercase tracking-[0.2em] text-brand-pale sm:text-sm">Kampala · Uganda</p>
-        <h1 className="animate-rise max-w-[20ch] text-balance font-display text-4xl leading-[1.05] text-on-image sm:text-5xl">
-          Digital products built around your ambition.
+      <img src={heroImage} alt="A designer developing a visual identity in the studio" className="absolute inset-0 size-full object-cover" width={1920} height={1280} />
+      <div className="relative mx-auto flex min-h-[calc(100svh-5rem)] max-w-6xl flex-col justify-end px-5 pb-10 pt-24 sm:px-8 sm:pb-12">
+        <h1 className="animate-rise max-w-[16ch] text-balance font-display text-4xl leading-[1.05] text-on-image drop-shadow-md sm:text-5xl">
+          Digital products built around <span className="text-brand-bright">your ambition.</span>
         </h1>
-        <p className="animate-rise mt-6 max-w-xl text-base leading-relaxed text-on-image/85 [animation-delay:140ms] sm:text-lg">
+        <p className="animate-rise mt-6 max-w-md text-base leading-relaxed text-on-image/90 [animation-delay:140ms] sm:text-lg">
           Distinct branding, design, and software engineering for growing businesses.
         </p>
         <Button asChild className="animate-rise mt-8 w-fit [animation-delay:260ms]">
           <a href="#contact">Start a project <ArrowRight className="size-4" aria-hidden="true" /></a>
         </Button>
+        <div className="animate-fade mt-12 grid grid-cols-1 gap-5 border-t border-on-image/30 pt-6 [animation-delay:400ms] sm:grid-cols-3 sm:gap-8">
+          {HERO_FEATURES.map((feature) => (
+            <div key={feature.label} className="flex items-center gap-3">
+              <feature.icon className="size-5 shrink-0 text-brand-bright" aria-hidden="true" />
+              <span className="text-sm font-medium text-on-image">{feature.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
